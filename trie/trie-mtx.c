@@ -53,7 +53,7 @@ void insertInTrie(Trie trie, unsigned char *w) {
       trie->transition[curState][w[i]] = trie->nextNode;
       curState = trie->nextNode;
       if (i == length - 1) {
-	trie->finite[trie->nextNode] = 1;
+        trie->finite[trie->nextNode] = 1;
       }
       trie->nextNode++;
     }
