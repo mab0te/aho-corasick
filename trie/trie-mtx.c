@@ -42,7 +42,7 @@ Trie createTrie(int maxNode) {
   return newTrie; //Retour du pointeur sur la structure.
 }
 
-void insertInTrie(Trie trie, unsigned char *w) {
+int insertInTrie(Trie trie, unsigned char *w) {
   size_t length = strlen((char *) w);
   int curState = 0;
   for (int i = 0; i < length; i++) {
@@ -58,6 +58,8 @@ void insertInTrie(Trie trie, unsigned char *w) {
       trie->nextNode++;
     }
   }
+
+  return curState;
 }
 
 int isInTrie(Trie trie, unsigned char *w) {

@@ -1,21 +1,7 @@
-#ifndef _AC_MATRICE
-#define _AC_MATRICE
+#ifndef _AC_LIST
+#define _AC_LIST
 
-#include "trie/trie-mtx.h"
-
-struct _ac_trie {
-	Trie trie;		// 
-	char * sortie;	// 
-
-};
-
-typedef struct _ac_trie * AcTrie;
-
-
-/*
- * Initialise la structure d'un AcTrie.
- */
-AcTrie initAcTrie();
+#include "trie/trie-lst.h"
 
 /*
  * Créé le Trie, 
@@ -29,17 +15,15 @@ Trie preAC (char ** x, int k);
 /*
  * Insère un mot w dans le Trie et donne sa sortie pour le calcul des suppléants.
  */
-void entrer (char * w, AcTrie acTrie);
+void entrer (char * w, Trie e);
 
 /*
  * Ajoute au Trie les suppléants pour chaque états.
  */
-void completer (AcTrie acTrie);
+void completer (Trie e);
 
 /*
  * Algorithme d'Aho-Corasick.
  * Localise toutes les occurences d'un ensemble fini x de k mots dans un texte y de longueur n.
  */
 void ac (char ** x, int k, char * y, int n);
-
-#endif

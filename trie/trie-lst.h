@@ -24,8 +24,10 @@ Trie createTrie(int maxNode);
  * Insert un mot dans un Trie
  * @param trie : le trie dans lequel insérer.
  * @param w : le mot à insérer dans le trie.
+ *
+ * @return : le nouvel état final inséré.
  */
-void insertInTrie(Trie trie, unsigned char *w);
+int insertInTrie(Trie trie, unsigned char *w);
 
 /**
  * Recherche si un mot est présent dans un trie.

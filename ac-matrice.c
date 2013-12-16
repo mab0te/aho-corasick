@@ -5,31 +5,56 @@
 #include "ac-matrice.h"
 #include "trie/trie-mtx.h"
 #include "alpha.h"
+#include "file.h"
 
 #define TRIE_SIZE 256
 
 char * alpha = TWO_CHAR_ALPHA;
 
-trie preAC (char ** x, int k) {
-	Trie e = createTrie (TRIE_SIZE);
+AcTrie initAcTrie () {
+	AcTrie acTrie;
+	acTrie = (AcTrie) malloc (sizeof (struct _ac_trie));
 
+	acTrie->trie = createTrie (TRIE_SIZE);
+
+	acTrie->sortie = (char *) malloc (TRIE_SIZE * sizeof (char));
+	memset (acTrie->sortie, 0, TRIE_SIZE);
+
+	return acTrie;
+}
+
+Trie preAC (char ** x, int k) {
+	// Création du trie
+	AcTrie acTrie = initAcTrie();
+
+	// Insertion de tous les mots de x au trie
 	for (int i = 0; i < k; i++) {
-		insertInTrie (e, x[i]);
+		entrer (x[i], acTrie);
 	}
 
-	for (int i = 0; i < alpha.size; i++) {
-		if (e.transition[0][alpha[i]] != 0) {
-			e.transition[0][alpha[i]] = 0
+	// Ajout de la boucle à la racine
+	t_size size = strlen (alpha);
+	for (int i = 0; i < size; i++) {
+		if (acTrie->trie->transition[0][(unsigned char) alpha[i]] != 0) {
+			acTrie->trie->transition[0][(unsigned char) alpha[i]] = 0
 		}
 	}
+
+	// Complétion du acTrie
+	completer (acTrie);
+
+	// Renvoie du acTrie
+	return acTrie;
 }
 
-void entrer (char * w, Trie e) {
-
+void entrer (char * w, AcTrie acTrie) {
+	int e = insertInTrie (acTrie, w);
+	acTrie->sortie[e] = 1;
 }
 
-void completer (Trie e) {
-
+void completer (AcTrie acTrie) {
+	Queue q = (Queue) malloc (sizeof (struct _queue));
+	
 }
 
 void ac (char ** x, int k, char * y, int n) {
