@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include <string.h>
+#include <time.h>
+
+#include "../alpha.h"
+
+#define BUFF_SIZE 128
+
+void usage(char *exec) {
+
+}
+
+int main(int argc, char *argv[]) {
+
+
+
+}
