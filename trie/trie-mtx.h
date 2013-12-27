@@ -16,14 +16,14 @@ typedef struct _trie *Trie;
  *       maxNode >= 0
  * @return un Trie initialisé ou NULL en cas d'erreur.
  */
-Trie createTrie(int maxNode);
+Trie createTrie(int maxNode, int alphaSize);
 
 /**
  * Insert un mot dans un Trie
  * @param trie : le trie dans lequel insérer.
  * @param w : le mot à insérer dans le trie.
  */
-void insertInTrie(Trie trie, unsigned char *w);
+int insertInTrie(Trie trie, char *w);
 
 /**
  * Recherche si un mot est présent dans un trie.
@@ -32,5 +32,5 @@ void insertInTrie(Trie trie, unsigned char *w);
  *
  * @return : 1 si le mot est trouvé, 0 sinon.
  */
-int isInTrie(Trie trie, unsigned char *w);
+int isInTrie(Trie trie, char *w);
 #endif

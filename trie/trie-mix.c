@@ -23,7 +23,7 @@ Trie createTrie(int maxNode) {
   return newTrie;
 }
 
-void insertInTrie(Trie trie, unsigned char *w) {
+int insertInTrie(Trie trie, unsigned char *w) {
   if (strcmp((char *) w, "") == 0) {
     trie->finite[0] = 1;
   } else {

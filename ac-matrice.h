@@ -4,9 +4,9 @@
 #include "trie/trie-mtx.h"
 
 struct _ac_trie {
-	Trie trie;		// 
-	char * sortie;	// 
-
+	Trie trie;		// Le trie
+	char * sortie;	// Indique les noeuds dont les suppléants sont des états finaux
+	int * sup;		// Suppléants
 };
 
 typedef struct _ac_trie * AcTrie;
@@ -24,7 +24,7 @@ AcTrie initAcTrie();
  * puis complète le Trie (via completer (Trie e)).
  * Renvoie le Trie.
  */
-Trie preAC (char ** x, int k);
+AcTrie preAC (char ** x, int k);
 
 /*
  * Insère un mot w dans le Trie et donne sa sortie pour le calcul des suppléants.

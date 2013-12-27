@@ -6,7 +6,7 @@ struct _queue {
 	struct _queue * next;
 };
 
-typedef _queue * Queue;
+typedef struct _queue * Queue;
 
 /*
  * Insertion en queue d'un élément dans la file.

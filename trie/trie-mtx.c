@@ -4,9 +4,7 @@
 
 #include "trie-mtx.h"
 
-#define ALPHA_SIZE 256
-
-Trie createTrie(int maxNode) {
+Trie createTrie(int maxNode, int alphaSize) {
   Trie newTrie;
   //Allocation de la structure
   newTrie = (Trie) malloc(sizeof(struct _trie));
@@ -20,7 +18,7 @@ Trie createTrie(int maxNode) {
     return NULL;
   }
   for (int i = 0; i <= maxNode; i++) {
-    newTrie->transition[i] = (int *) malloc(ALPHA_SIZE * sizeof(int));
+    newTrie->transition[i] = (int *) malloc(alphaSize * sizeof(int));
     if (newTrie->transition[i] == NULL) {
       return NULL;
     }
@@ -34,7 +32,7 @@ Trie createTrie(int maxNode) {
   newTrie->maxNode = maxNode;
   newTrie->nextNode = 1;
   for (int i = 0; i <= maxNode; i++) {
-    for (int j = 0; j < ALPHA_SIZE; j++) {
+    for (int j = 0; j < alphaSize; j++) {
       newTrie->transition[i][j] = -1;
     }
     newTrie->finite[i] = 0;
@@ -42,7 +40,7 @@ Trie createTrie(int maxNode) {
   return newTrie; //Retour du pointeur sur la structure.
 }
 
-int insertInTrie(Trie trie, unsigned char *w) {
+int insertInTrie(Trie trie, char *w) {
   size_t length = strlen((char *) w);
   int curState = 0;
   for (int i = 0; i < length; i++) {
@@ -62,7 +60,7 @@ int insertInTrie(Trie trie, unsigned char *w) {
   return curState;
 }
 
-int isInTrie(Trie trie, unsigned char *w) {
+int isInTrie(Trie trie, char *w) {
   size_t length = strlen((char *) w);
   int curState = 0;
   for (int i = 0; i < length; i++) {
