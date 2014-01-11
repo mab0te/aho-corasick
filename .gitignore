@@ -22,3 +22,6 @@
 *.bak
 *.back
 \#*
+
+# Generated texts
+*.txt
