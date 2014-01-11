@@ -3,10 +3,15 @@
 
 #include "trie/trie-mtx.h"
 
+/**
+ * Une super structure augmentant la structure standar des tries.
+ * Cette structure ajoute un tableau de suppléant ainsi qu'un 
+ * tableau de noeud de sortie.
+ */
 struct _ac_trie {
-	Trie trie;		// Le trie
-	char * sortie;	// Indique les noeuds dont les suppléants sont des états finaux
-	int * sup;		// Suppléants
+  Trie trie; // Le trie  
+  char * sortie;// Indique les noeuds dont les suppléants sont des états finaux
+  int * sup;// Suppléants
 };
 
 typedef struct _ac_trie * AcTrie;

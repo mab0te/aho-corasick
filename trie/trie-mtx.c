@@ -40,31 +40,37 @@ Trie createTrie(int maxNode, int alphaSize) {
   return newTrie; //Retour du pointeur sur la structure.
 }
 
+/**
+ * Insert un mot dans un trie.
+ * @return L'état final du trie correspondant au mot
+ */
 int insertInTrie(Trie trie, char *w) {
-  size_t length = strlen((char *) w);
-  int curState = 0;
-  for (int i = 0; i < length; i++) {
-    int next = trie->transition[curState][w[i]];
-    if (next > -1) {
-      curState = next;
-    } else {
-      trie->transition[curState][w[i]] = trie->nextNode;
-      curState = trie->nextNode;
-      if (i == length - 1) {
-        trie->finite[trie->nextNode] = 1;
-      }
+  size_t length = strlen(w); //Longueure du mot
+  int curState = 0; //On démarre de la racine
+  for (int i = 0; i < length; i++) { //Pour toutes les lettres du mot
+    int next = trie->transition[curState][(int) w[i]];
+    if (next > -1) { //Si une transition existe de l'etat courant par la lettre
+      curState = next; //On avance sur la branche
+    } else { //Sinon
+      //Affectation d'un nouveau noeud de l'etat courant par w[i]
+      trie->transition[curState][(int) w[i]] = trie->nextNode;
+      curState = trie->nextNode; //On avance sur le nouveau noeud
       trie->nextNode++;
     }
   }
-
+  //On etait sur la derniere lettre
+  trie->finite[curState] = 1; //On note le dernier état comme final
+  if (!isInTrie(trie, w)) {
+    fprintf(stderr, "[DEBUG] pas de mot dans le trie apres insert\n");
+  }
   return curState;
 }
 
 int isInTrie(Trie trie, char *w) {
-  size_t length = strlen((char *) w);
+  size_t length = strlen( w);
   int curState = 0;
   for (int i = 0; i < length; i++) {
-    int next = trie->transition[curState][w[i]];
+    int next = trie->transition[curState][(int) w[i]];
     if (next < 0) {
       return 0;
     } else {

@@ -2,8 +2,8 @@
 #define _AC_FILE
 
 struct _queue {
-	int elm;
-	struct _queue * next;
+  int elm;
+  struct _queue * next;
 };
 
 typedef struct _queue * Queue;
@@ -22,5 +22,11 @@ Queue popQueue (Queue q);
  * Récupère l'élément en tête de file.
  */
 int topQueue (Queue q);
+
+/**
+ * Affiche une file en ascii.
+ * Pour le debuggage
+ */
+void printQueue(Queue q);
 
 #endif
