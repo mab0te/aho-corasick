@@ -5,7 +5,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
-#include "ac-matrice.h"
+#include "ac-mix.h"
 
 #define BUFF_SIZE 1024
 
@@ -50,18 +50,23 @@ int main(int argc, char const *argv[]) {
   size_t length = 0;
   int blockNb = 1;
   while (!feof(textFile)) {
-    fread(buff, sizeof(char), BUFF_SIZE, textFile);
-    strncat(text, buff, BUFF_SIZE);
-    length += strlen(buff);
+    size_t read = fread(buff, sizeof(char), BUFF_SIZE, textFile);
+    strncat(text, buff, read);
+    length += read;
     if (!feof(textFile)) {
       blockNb += 1;
-      printf("%d\n", blockNb);
+      //printf("%d", blockNb);
       text = realloc(text, blockNb * BUFF_SIZE);
     }
   }
   fclose(textFile);
-  
   ac(words, wordNb, text, strlen(text));
+  //Liberation de la memoire
+  free(text);
+  for (int i = 0; i < wordNb; i++) {
+    free(words[i]);
+  }
+  free(words);
 
   exit(EXIT_SUCCESS);
 }

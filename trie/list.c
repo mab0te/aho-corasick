@@ -4,7 +4,7 @@
 
 #include "list.h"
 
-int getFromList(List list, unsigned char label) {
+int getFromList(List list, char label) {
   List tmp = list;
   while (tmp != NULL) {
     if (tmp->letter == label) {

@@ -23,13 +23,14 @@ Trie createTrie(int maxNode) {
   return newTrie;
 }
 
-int insertInTrie(Trie trie, unsigned char *w) {
+int insertInTrie(Trie trie, char *w) {
   if (strcmp((char *) w, "") == 0) {
     trie->finite[0] = 1;
+    return 0;
   } else {
-    int curState = trie->transitionRoot[w[0]];
+    int curState = trie->transitionRoot[(int) w[0]];
     if (curState == -1) {
-      trie->transitionRoot[w[0]] = trie->nextNode;
+      trie->transitionRoot[(int) w[0]] = trie->nextNode;
       curState = trie->nextNode;
       trie->nextNode = trie->nextNode + 1;
     }
@@ -46,15 +47,16 @@ int insertInTrie(Trie trie, unsigned char *w) {
       }
     }
     trie->finite[curState] = 1;
+    return curState;
   }
 }
 
-int isInTrie(Trie trie, unsigned char *w) {
+int isInTrie(Trie trie, char *w) {
   if (strcmp((char *) w, "") == 0) {
     return trie->finite[0];
   }
   size_t length = strlen((char *) w);
-  int curState = trie->transitionRoot[w[0]];
+  int curState = trie->transitionRoot[(int) w[0]];
   if (curState < 0) {
     return 0;
   }

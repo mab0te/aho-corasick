@@ -1,7 +1,7 @@
 #ifndef _AC_LIST
 #define _AC_LIST
 
-#include "trie/trie-lst.h"
+#include "trie/trie-mix.h"
 
 /**
  * Une super structure augmentant la structure standar des tries.

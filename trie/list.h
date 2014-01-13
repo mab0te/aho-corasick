@@ -7,7 +7,7 @@
 
 struct _list {
   int targetNode; // Cible de la transition 
-  unsigned char letter; // Etiquette de la transition
+  char letter; // Etiquette de la transition
   struct _list *next; // Maillon suivant
 };
 
@@ -16,7 +16,7 @@ typedef struct _list *List;
 /**
  * Récupère le noeud cible dans la liste par label.
  */
-int getFromList(List list, unsigned char label);
+int getFromList(List list, char label);
 
 /**
  * Créer une nouvelle liste et la retourne.

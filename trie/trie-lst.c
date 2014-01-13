@@ -5,8 +5,6 @@
 #include "trie-lst.h"
 #include "list.h"
 
-#define ALPHA_SIZE 256
-
 Trie createTrie(int maxNode) {
   if (maxNode < 1) {
     return NULL;
@@ -27,8 +25,8 @@ Trie createTrie(int maxNode) {
   return newTrie;
 }
 
-void insertInTrie(Trie trie, unsigned char *w) {
-  size_t length = strlen((char *) w);
+int insertInTrie(Trie trie, char *w) {
+  size_t length = strlen(w);
   int curState = 0;
   for (int i = 0; i < length; i++) {
     int next = getFromList(trie->transition[curState], w[i]);
@@ -42,10 +40,11 @@ void insertInTrie(Trie trie, unsigned char *w) {
     }
   }
   trie->finite[curState] = 1;
+  return curState;
 }
 
-int isInTrie(Trie trie, unsigned char *w) {
-  size_t length = strlen((char *) w);
+int isInTrie(Trie trie, char *w) {
+  size_t length = strlen(w);
   int curState = 0;
   for (int i = 0; i < length; i++) {
     int next = getFromList(trie->transition[curState], w[i]);

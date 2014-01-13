@@ -28,7 +28,7 @@ Trie createTrie(int maxNode);
  * @param trie : le trie dans lequel insérer.
  * @param w : le mot à insérer dans le trie.
  */
-void insertInTrie(Trie trie, unsigned char *w);
+int insertInTrie(Trie trie, char *w);
 
 /**
  * Recherche si un mot est présent dans un trie.
@@ -37,6 +37,6 @@ void insertInTrie(Trie trie, unsigned char *w);
  *
  * @return : 1 si le mot est trouvé, 0 sinon.
  */
-int isInTrie(Trie trie, unsigned char *w);
+int isInTrie(Trie trie, char *w);
 
 #endif
